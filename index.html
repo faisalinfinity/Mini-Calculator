@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+      #parent {
+        border: 0px solid black;
+        width: 25%;
+        height: 450px;
+
+        margin: auto;
+        margin-top: 100px;
+
+        display: grid;
+        grid-template-columns: repeat(4, 55px);
+        grid-template-rows: repeat(5, 50px);
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+          rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      }
+      #parent > div {
+        border: 0px solid black;
+        font-weight: bold;
+        font-size: 20px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        border-radius: 12px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+          rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        margin-top: 70px;
+        margin-bottom: -20px;
+      }
+      .frow {
+        grid-area: 1/1/2/5;
+      }
+      h1 {
+        border: 0px solid black;
+        text-align: center;
+        color: #018080;
+        font-size: 40px;
+
+        margin-top: 50px;
+        margin-bottom: -30px;
+      }
+      .opr {
+        background-color: black;
+        color: aliceblue;
+      }
+      #c {
+        background-color: red;
+        color: white;
+      }
+      .opr:hover {
+        background-color: aliceblue;
+        border: 1px solid teal;
+        color: black;
+      }
+      #c:hover {
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Mini Calculator</h1>
+
+    <div id="parent">
+      <div class="frow"></div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div class="opr">+</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div class="opr">-</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div class="opr">x</div>
+      <div id="c">C</div>
+      <div>0</div>
+      <div class="opr">=</div>
+      <div class="opr">/</div>
+    </div>
+  </body>
+</html>
+<script>
+  x = document.querySelectorAll(".frow~div");
+
+  let bag = "";
+
+  x.forEach(function (el) {
+    el.addEventListener("click", mycall);
+  });
+  z = document.querySelectorAll(".frow")[0].innerText;
+
+  function mycall(event) {
+    if (event.target.innerText == "=") {
+      h = eval(bag);
+      console.log(h);
+      if (h == undefined) {
+        document.querySelectorAll(".frow")[0].innerText = "";
+      } else if (h == NaN) {
+        document.querySelectorAll(".frow")[0].innerText = "Error";
+      } else {
+        document.querySelectorAll(".frow")[0].innerText = h;
+      }
+    } else if (event.target.innerText == "C") {
+      bag = "";
+
+      document.querySelectorAll(".frow")[0].innerText = " ";
+    } else {
+      if (event.target.innerText == "x") {
+        event.target.innerText = "*";
+      }
+
+      bag += event.target.innerText;
+
+      document.querySelectorAll(".frow")[0].innerText = bag;
+    }
+  }
+</script>
